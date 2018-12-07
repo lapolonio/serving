@@ -160,10 +160,10 @@ Next, run the TensorFlow Serving container pointing it to this model and opening
 the REST API port (8501):
 
 ```shell
+SOURCE='/tmp/tfserving/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_cpu'
+TARGET='/models/half_plus_two'
 docker run -p 8501:8501 \
-  --mount type=bind,\
-  source=/tmp/tfserving/serving/tensorflow_serving/servables/tensorflow/testdata/saved_model_half_plus_two_cpu,\
-  target=/models/half_plus_two \
+  --mount type=bind,source=$SOURCE,target=$TARGET \
   -e MODEL_NAME=half_plus_two -t tensorflow/serving &
 ```
 
